@@ -7,11 +7,11 @@ Make sure you download the starter code and run the following:
 
 In markdown, you can place a code block inside of three backticks (```) followed by the syntax highlighting you want, for example
 
-\```sql
+```
 
 SELECT \* FROM users;
 
-\```
+```
 
 Using the `movies_db` database, write the correct SQL queries for each of these tasks:
 
