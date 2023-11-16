@@ -4,4 +4,21 @@
 
 <h1>Add a form that when submitted creates a new playlist!</h1>
 
+<h3>Create Playlist</h3>
+<form action='/playlists' method="POST">
+{% for field in form 
+    if field.widget.input_type != 'hidden' %}
+<p>{{field}}{{field.label}}</p>
+{%endfor%}
+<button>Create Empty Playlist</button>
+</form>
+<!-- <h3>Add Song</h3>
+<form action ="/playlists/<int:playlist_id>" method="POST">
+    {% for field in form
+        if field.widget.input_type != 'hidden' %}
+<p>{{field}}</p>
+{%endfor%}
+<button>Add song</button>
+</form> -->
+
 {% endblock %}
