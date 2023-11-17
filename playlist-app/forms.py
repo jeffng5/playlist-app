@@ -15,6 +15,7 @@ class SongForm(FlaskForm):
     """Form for adding songs."""
 
     # Add the necessary code to use this form
+
     title = StringField('song title')
     mp3 = FileField('mp3 file')
     artist = StringField('artist')
