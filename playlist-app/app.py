@@ -31,7 +31,12 @@ def root():
 
 ##############################################################################
 # Playlist routes
+@app.route("/playlists", methods=['POST'])
+def show_all_playlists():
+    """Return a list of playlists."""
+    
 
+    return render_template("playlists.html")
 
 @app.route("/playlists", methods=['GET'])
 def get_all_playlists():
@@ -40,25 +45,17 @@ def get_all_playlists():
 
     return render_template("playlists.html", playlists=playlists)
 
-@app.route("/playlists", methods=['POST'])
-def show_all_playlists():
-    """Return a list of playlists."""
-    
-
-    return render_template("playlists.html")
 
 
 
 
 
 
-
-
-
-@app.route("/playlists/<int:playlist_id>")
+@app.route("/playlists/<int:playlist_id>", methods=['GET', 'POST'])
 def show_playlist(playlist_id):
     """Show detail on specific playlist."""
-    playlist=Playlist.query.get_or_404(id)
+
+    playlist=Playlist.query.get_or_404(playlist_id)
 
     # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
     return render_template('playlist.html', playlist=playlist)
@@ -99,7 +96,8 @@ def show_all_songs():
 @app.route("/songs/<int:song_id>")
 def show_song(song_id):
     """return a specific song"""
-
+    canto =Song.query.get_or_404(song_id)
+    return render_template('song.html', song=canto)
     # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
 
 

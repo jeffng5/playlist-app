@@ -7,7 +7,7 @@
 <h1>Add a form that when submitted adds a song to this playlist!</h1>
 
 <h3>Add Song</h3>
-<form action ="/playlists/<int:playlist_id>" method="POST">
+<form action ="/playlists/playlist_id" method="POST">
     {% for field in form
         if field.widget.input_type != 'hidden' %}
 <p>{{field}}{{field.label}}</p>
