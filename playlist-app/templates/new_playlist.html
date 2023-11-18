@@ -5,7 +5,8 @@
 <h1>Add a form that when submitted creates a new playlist!</h1>
 
 <h3>Create Playlist</h3>
-<form action='/playlists' method="POST">
+<form method="POST">
+{{form.hidden_tag()}}
 {% for field in form 
     if field.widget.input_type != 'hidden' %}
 <p>{{field}}{{field.label}}</p>

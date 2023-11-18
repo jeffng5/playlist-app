@@ -7,8 +7,8 @@ db.create_all()
 p1= Playlist(name='rock classics', description='favorite rock tracks of all time')
 p2= Playlist(name='car ride music', description='favorite tracks to vibe to while driving')
 
-s1=Song(title='Basketcase', artist='Green Day', genre= 'rock', year_released= '1994')
-s2=Song(title= 'Meltaway', artist= 'Mariah Carey', genre = 'soft rock', year_released= '1998')
+s1=Song(title='Basketcase', artist='Green Day', genre= 'rock')
+s2=Song(title= 'Melt Away', artist= 'Mariah Carey', genre = 'soft rock')
 
 
 db.session.add(p1)

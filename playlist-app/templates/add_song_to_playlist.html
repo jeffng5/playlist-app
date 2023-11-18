@@ -8,6 +8,7 @@
 
 <h3>Add Song</h3>
 <form action ="/playlists/playlist_id" method="POST">
+    {{form.hidden_tag()}}
     {% for field in form
         if field.widget.input_type != 'hidden' %}
 <p>{{field}}{{field.label}}</p>

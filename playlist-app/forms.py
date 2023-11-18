@@ -17,10 +17,10 @@ class SongForm(FlaskForm):
     # Add the necessary code to use this form
 
     title = StringField('song title')
-    mp3 = FileField('mp3 file')
+    # mp3 = FileField('mp3 file')
     artist = StringField('artist')
     genre = SelectField('genre', choices =[('rock','rock'), ('jazz','jazz'), ('pop','pop'), ('classical','classical'), ('hiphop','hiphop'), ('soundtrack','soundtrack'), ('blues','blues')])
-    year_released = DateField('year released')
+
 
 
 

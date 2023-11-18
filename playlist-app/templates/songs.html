@@ -5,8 +5,9 @@
 <h1>Check out the songs!</h1>
 
 <ul>
-{% for song in song %}
-  <li><a href="/songs/{{song.id}}">{{ song.title }}</a></li>
+{% for song in songs %}
+  <li><a href="/songs/{{song.id}}">{{ song.title }}       {{song.artist}}</a></li>
+  <a href = "{{ url_for('show_song', song_id= song.id)}}">{{song.id}}</a>
 {% endfor %}
 </ul>
 

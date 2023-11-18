@@ -31,12 +31,11 @@ class Song(db.Model):
                     nullable= False)
     artist = db.Column(db.String,
                     nullable=False)
-    mp3 = db.Column(db.String,
-                    nullable = True)
+    # mp3 = db.Column(db.String,
+    #                 nullable = True)
     genre = db.Column(db.String,
                       nullable= False)
-    year_released = db.Column(db.Integer,
-                              nullable = True)
+   
     # ADD THE NECESSARY CODE HERE
 
 class PlaylistSong(db.Model):

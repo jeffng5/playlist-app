@@ -34,9 +34,9 @@ def root():
 @app.route("/playlists", methods=['POST'])
 def show_all_playlists():
     """Return a list of playlists."""
-    
+    playlists=Playlist.query.all()    
 
-    return render_template("playlists.html")
+    return render_template("playlists.html", playlists=playlists)
 
 @app.route("/playlists", methods=['GET'])
 def get_all_playlists():
@@ -85,13 +85,24 @@ def add_playlist():
 # Song routes
 
 
-@app.route("/songs", methods= ['GET', 'POST'])
+@app.route("/songlist", methods= ['POST'])
 def show_all_songs():
     """Show list of songs."""
+    songs=Song.query.all()
+    return render_template('songs.html', songs=songs)
 
-    song = Song.query.all()
-    return render_template("songs.html", song=song)
+@app.route("/songlist", methods= ['GET'])
+def get_all_songs():
+    """Show list of songs."""
+    songs = Song.query.all()
+    return render_template("songs.html", songs=songs)
 
+
+@app.route("/songs", methods= ['GET','POST'])
+def display_all_songs():
+    """Show list of songs."""
+    songs = Song.query.all()
+    return render_template("songs.html", songs=songs)
 
 @app.route("/songs/<int:song_id>")
 def show_song(song_id):
@@ -99,7 +110,6 @@ def show_song(song_id):
     canto =Song.query.get_or_404(song_id)
     return render_template('song.html', song=canto)
     # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
-
 
 @app.route("/songs/add", methods=["GET", "POST"])
 def add_song():
@@ -115,14 +125,11 @@ def add_song():
     if form.validate_on_submit():
         title = form.title.data
         artist = form.artist.data
-        mp3=form.mp3.data
         genre= form.genre.data
-        year_released = form.year_released.data
-
-        new_song=Song(title=title, artist=artist, mp3=mp3, genre=genre, year_released=year_released)
-        db.session.add(new_song)
+        track=Song(title=title, artist=artist, genre=genre)
+        db.session.add(track)
         db.session.commit()
-        return redirect('/songs')
+        return redirect('/songlist')
     else:    
         return render_template('new_song.html', form=form) 
 
@@ -136,19 +143,22 @@ def add_song_to_playlist(playlist_id):
 
     playlist = Playlist.query.get_or_404(playlist_id)
     form = NewSongForPlaylistForm()
-
+    
     # Restrict form to songs not already on this playlist
 
-    curr_on_playlist = PlaylistSong.filter(playlist_id= playlist_id)
+    # curr_on_playlist = PlaylistSong.filter(playlist_id= playlist_id)
 
 
-    form.song.choices = ...
-
+    # form.song.choices = [(song.id for song in Song)]
+    # genre = SelectField('genre', choices =[('rock','rock'), ('jazz','jazz'), ('pop','pop'), ('classical','classical'), ('hiphop','hiphop'), ('soundtrack','soundtrack'), ('blues','blues')])
+    # song = 
     if form.validate_on_submit():
 
           # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
         song = form.song.data
-        
+        add_to_playlist= PlaylistSong(song=song)
+        db.session.add(add_to_playlist)
+        db.sesssion.commit()
         return redirect(f"/playlists/{playlist_id}")
 
     return render_template("add_song_to_playlist.html",
